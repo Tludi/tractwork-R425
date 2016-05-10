@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   authenticates_with_sorcery!
   belongs_to :account
 
+  has_many :workdays, dependent: :destroy
+  has_many :projects, -> {uniq}, through: :workdays
+  
   validates_presence_of :firstName, :lastName, :email
   validates :email, uniqueness: true
   # validates :pin, length: {is: 4}

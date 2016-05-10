@@ -1,5 +1,9 @@
 Myapp::Application.routes.draw do
 
+  resources :time_punches
+  resources :workdays, only: [:index, :show, :new, :create, :update] do
+    resources :time_punches
+  end
   # resources :projects
   # namespace :admin do
   # get 'users/index'

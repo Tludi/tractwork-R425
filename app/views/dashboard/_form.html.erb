@@ -1,0 +1,23 @@
+<%= form_for(@workday) do |f| %>
+  <% if @workday.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@workday.errors.count, "error") %> prohibited this workday from being saved:</h2>
+
+      <ul>
+      <% @workday.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="field">
+    <%= f.label "project:" %>
+    <%= f.select(:project_id, 
+                 @account.projects.map { |project| [project.name, project.id] }) %>
+    <%= f.submit "Change Project", :action => 'update', class: "btn btn-primary btn-xs"%>
+  </div>
+<% end %>
+  

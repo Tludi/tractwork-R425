@@ -1,0 +1,19 @@
+<!-- _timePunchForm.html.erb -->
+<div class = "centered">
+<h4>Current Status</h4>
+<% if @time_punch_status %>
+  <h4 class="label label-success">Clocked In</h4>
+<% else %>
+  <h4 class="label label-danger">Clocked Out</h4>
+<% end %>
+
+<br>
+<br>
+<%= form_for [@workday, @time_punch] do |wd| %>
+
+    <div class="actions">
+      <%= wd.submit "Clock In/Out", class: "btn btn-primary clockButton"%>
+    </div>
+
+<% end -%>
+</div>
