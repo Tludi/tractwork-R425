@@ -4,6 +4,7 @@ class DashboardController < ApplicationController
 
   def index
     @user = current_user
+    @milo = milo
     @workday = Workday.retrieve_current_workday(current_user)
 
     @current_time = get_current_time
@@ -30,5 +31,9 @@ class DashboardController < ApplicationController
 
   def set_account
     @account = current_user.account
+  end
+
+  def milo
+    current_user.firstName == "milo"
   end
 end

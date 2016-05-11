@@ -1,5 +1,7 @@
 <div class="wrapper wrapper-content">
   <div class="row">
+
+    <!-- user, total hours, and project box -->
     <div class="col-lg-3">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
@@ -15,7 +17,7 @@
       </div>
     </div>
 
-
+    <!-- time clock box  -->
     <div class="col-lg-3">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
@@ -27,19 +29,39 @@
         </div>
       </div>
     </div>
+
+    <!-- time punches box -->
     <div class="col-lg-3">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <span class="label label-primary pull-right">Today</span>
-          <h5>Vistits</h5>
+          <span class="label label-primary pull-right">In/Out</span>
+          <h5>Time Punches</h5>
         </div>
         <div class="ibox-content">
-          <h1 class="no-margins">106,120</h1>
-          <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
-          <small>New visits</small>
+              <div class="row">
+              <% @current_workday_time_punches.each do |tp| %>
+                <div class="col-md-2" >
+                  <div class="well">
+                    <%= local_time(tp.created_at, '%l:%M %P') %>
+                    <% if tp.clockedInStatus %>
+                      <p class="label label-success">In</p>
+                    <% else %>
+                      <p class="label label-danger">Out</p>
+                    <% end %>
+                    <% if @milo %>
+                    <p>
+                      <%= link_to 'Destroy', tp, method: :delete, data: { confirm: 'Are you sure?' } %>
+                      </p>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+              </div>
         </div>
       </div>
     </div>
+
+
     <div class="col-lg-3">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
